@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
     }
 
     #endregion
-
+    
     private Transform transA;
     private Transform transB;
     private Rigidbody rbA;

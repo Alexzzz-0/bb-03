@@ -11,12 +11,14 @@ public class NoWayOut : MonoBehaviour
         {
             UIManager.instance.Aempty = false;
             UIManager.instance.Aword.text = "There is no way out...";
+            UIManager.instance.timerA = 0;
         }
         
         if (other.gameObject.CompareTag("playerB"))
         {
             UIManager.instance.Bempty = false;
             UIManager.instance.Bword.text = "There is no way out...";
+            UIManager.instance.timerB = 0;
         }
     }
 }

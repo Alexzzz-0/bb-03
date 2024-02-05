@@ -17,6 +17,12 @@ public class Level0 : MonoBehaviour
     [SerializeField] private Outline leftTwo;
     [SerializeField] private Outline rightOne;
     [SerializeField] private Outline rightTwo;
+    //[SerializeField] private Material materialBehindDoor;
+
+    public bool playerAReached = false;
+    public bool playerBReached = false;
+    private Color newColor;
+    private float transDecrease = 0.05f;
     
     private bool Wpressed = false;
     private bool Apressed = false;
@@ -49,46 +55,112 @@ public class Level0 : MonoBehaviour
 
     #endregion
 
+    // private void Start()
+    // {
+    //     newColor = materialBehindDoor.color;
+    //     newColor.a = 1;
+    // }
+
     public void CloseUI()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            A.SetActive(false);
+            //the more they pressed, the more transparent the wall
+            // if (!Apressed)
+            // {
+            //     newColor = materialBehindDoor.color;
+            //     newColor.a -= transDecrease;
+            //     materialBehindDoor.color = newColor;
+            // }
+            
+            //if they pressed when they are stuck, tell them dont move
+            TellAToWait();
+            
+            //A.SetActive(false);
             Apressed = true;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            S.SetActive(false);
+            // if (!Spressed)
+            // {
+            //     newColor = materialBehindDoor.color;
+            //     newColor.a -= transDecrease;
+            //     materialBehindDoor.color = newColor;
+            // }
+            TellAToWait();
+            //S.SetActive(false);
             Spressed = true;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            D.SetActive(false);
+            // if (!Dpressed)
+            // {
+            //     newColor = materialBehindDoor.color;
+            //     newColor.a -= transDecrease;
+            //     materialBehindDoor.color = newColor;
+            // }
+            TellAToWait();
+            //D.SetActive(false);
             Dpressed = true;
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            W.SetActive(false);
+            // if (!Wpressed)
+            // {
+            //     newColor = materialBehindDoor.color;
+            //     newColor.a -= transDecrease;
+            //     materialBehindDoor.color = newColor;
+            // }
+            TellAToWait();
+            //W.SetActive(false);
             Wpressed = true;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            UP.SetActive(false);
+            // if (!UPpressed)
+            // {
+            //     newColor = materialBehindDoor.color;
+            //     newColor.a -= transDecrease;
+            //     materialBehindDoor.color = newColor;
+            // }
+            TellBToWait();
+            //UP.SetActive(false);
             UPpressed = true;
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            DOWN.SetActive(false);
+            // if (!DOWNpressed)
+            // {
+            //     newColor = materialBehindDoor.color;
+            //     newColor.a -= transDecrease;
+            //     materialBehindDoor.color = newColor;
+            // }
+            TellBToWait();
+            //DOWN.SetActive(false);
             DOWNpressed = true;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            LEFT.SetActive(false);
+            // if (!LEFTpressed)
+            // {
+            //     newColor = materialBehindDoor.color;
+            //     newColor.a -= transDecrease;
+            //     materialBehindDoor.color = newColor;
+            // }
+            TellBToWait();
+            //LEFT.SetActive(false);
             LEFTpressed = true;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            RIGHT.SetActive(false);
+            // if (!RIGHTpressed)
+            // {
+            //     newColor = materialBehindDoor.color;
+            //     newColor.a -= transDecrease;
+            //     materialBehindDoor.color = newColor;
+            // }
+            TellBToWait();
+            //RIGHT.SetActive(false);
             RIGHTpressed = true;
         }
 
@@ -112,6 +184,33 @@ public class Level0 : MonoBehaviour
             {
                 BoutLine = 0;
             }
+        }
+
+        if (playerAReached && playerBReached)
+        {
+            //start next scene
+            UIManager.instance.footStep.SetActive(false);
+            Debug.Log("level 1");
+        }
+        
     }
+    void TellAToWait()
+    {
+        if (playerAReached)
+        {
+            UIManager.instance.Aword.text = "We are waiting for the other.";
+            UIManager.instance.timerA = 0;
+            UIManager.instance.Aempty = false;
+        }
+    }
+        
+    void TellBToWait()
+    {
+        if (playerBReached)
+        {
+            UIManager.instance.Bword.text = "We are waiting for the other.";
+            UIManager.instance.timerB = 0;
+            UIManager.instance.Bempty = false;
+        }
     }
 }

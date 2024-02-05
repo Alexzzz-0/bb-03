@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI Aword;
     public TextMeshProUGUI Bword;
+    public GameObject footStep;
+    public GameObject knockDoor;
 
     #region singleton
 
